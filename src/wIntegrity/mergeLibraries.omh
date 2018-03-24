@@ -1,0 +1,55 @@
+Do ilRequires.$define(lcClass)
+;  Look for the tasks in that folder and look for "Requires: " in $construct
+;       ;; Get a list of these and look at the folders at the same level for that class and copy it over into the pimary JSON library folder
+Do FileOps.$splitpathname(icPrimaryJSONlibrary,lcDrive,lcDirectory,lcFileName,lcExtension)
+Do FileOps.$filelist(kFileOpsIncludeDirectories,icPrimaryJSONlibrary,kFileOpsInfoName+kFileOpsInfoFullName,,icErrorText) Returns ilPrimaryFolder
+;  From each folder, find its class.json and look for classtype=kTask, kRemoteTask
+;       ;; For each one, look in its $construct.omh for "Requires:" and get a list
+For ilPrimaryFolder.$line from 1 to ilPrimaryFolder.$linecount step 1
+	Do loFileOps.$openfile(con(ilPrimaryFolder.fullname,sys(9),'class.json'),kTrue)
+	Do loFileOps.$readcharacter(kUniTypeUTF8,lcMethod)
+	Do loFileOps.$closefile()
+	If pos('"classtype": "kTask"',lcMethod)|pos('"classtype": "kRemoteTask"',lcMethod)
+		Calculate lcFile as con(ilPrimaryFolder.fullname,sys(9),'$construct.omh')
+		If FileOps.$doesfileexist(con(ilPrimaryFolder.fullname,sys(9),'$construct.omh'))
+			Do loFileOps.$openfile(lcFile,kTrue)
+			Do loFileOps.$readcharacter(kUniTypeUTF8,lcMethodText)
+			Do loFileOps.$closefile()
+			Calculate lnRequiresPos as pos('Requires:',lcMethodText)
+			While lnRequiresPos
+				Calculate lcMethodText as mid(lcMethodText,pos('Requires:',lcMethodText)+len('Requires:'))
+				Calculate lcRequires as strtok('lcMethodText',kCr)
+				Do ilRequires.$add(trim(lcRequires))
+				Calculate lnRequiresPos as pos('Requires:',lcMethodText)
+			End While
+		End If
+	End If
+End For
+
+Do FileOps.$filelist(kFileOpsIncludeDirectories,lcDirectory,kFileOpsInfoName+kFileOpsInfoFullName,icErrorText) Returns ilFolderList
+
+For ilFolderList.$line from 1 to ilFolderList.$linecount step 1
+	If ilFolderList.Name<>lcFileName
+		Do ilRequires.$search(kFalse,kTrue,kFalse,kTrue,kTrue) Returns ilRequires.$line
+		Do ilRequires.$search(pos(ilFolderList.name,ilRequires.lcClass),kTrue,kFalse,kTrue,kTrue) Returns ilRequires.$line
+		Calculate lcThisClass as mid(ilRequires.lcClass,pos(':',ilRequires.lcClass)+1)
+		Calculate lcFromFolder as con(ilFolderList.fullname,sys(9),lcThisClass)
+		Calculate lcToFolder as con(lcDrive,lcDirectory,lcFileName,sys(9),lcThisClass)
+		If FileOps.$doesfileexist(lcFromFolder)
+			Do FileOps.$deletefile(lcToFolder)
+			Do FileOps.$copyfile(lcFromFolder,lcToFolder) Returns lnError
+			Calculate lcLibraries as con(lcLibraries,lcThisClass,', ')
+			If not(isclear(lnError))
+				Breakpoint
+			End If
+		End If
+	End If
+End For
+Calculate lcLibraries as trim(lcLibraries)
+If right(lcLibraries,1)=','
+	Calculate lcLibraries as mid(lcLibraries,1,len(lcLibraries)-1)
+End If
+If isclear(lcLibraries)
+	Calculate lcLibraries as 'No'
+End If
+OK message Done! {[lcLibraries] libraries have been merged}

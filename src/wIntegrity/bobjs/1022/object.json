@@ -1,0 +1,30 @@
+{
+	"ident": 1022,
+	"order": 16386,
+	"objtype": "kText",
+	"properties": {
+		"align": "kLeftJst",
+		"backcolor": "kColorBackFill",
+		"backpattern": 15,
+		"designactive": true,
+		"edgefloat": "kEFnone",
+		"fieldstyle": "",
+		"font": 1,
+		"fontsize": 14,
+		"fontstyle": "kPlain",
+		"forecolor": "kColorForeFill",
+		"height": 102,
+		"left": 30,
+		"objlink": 0,
+		"text": {
+			"type": 14,
+			"calc": "Once you select the folder, this window will look for folders at the same level as you primary application and look in the $construct of any task or remote task for the string \"Requires:\". It will look for a library name and class on that line. These will be merged into the directory path for your primary application. Each class requires a separate \"Requires:\" line."
+		},
+		"textcolor": "kColorWindowText",
+		"top": 112,
+		"userinfo": "",
+		"vertcentertext": false,
+		"visible": true,
+		"width": 598
+	}
+}

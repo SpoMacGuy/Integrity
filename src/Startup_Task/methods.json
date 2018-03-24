@@ -1,0 +1,80 @@
+[
+	{
+		"name": "$construct",
+		"ident": 0,
+		"order": 16384,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "ilPrimaryFolder",
+				"order": 8,
+				"type": "kList",
+				"subtype": "",
+				"sublen": 0
+			},
+			{
+				"name": "lcDirectory",
+				"order": 3,
+				"type": "kCharacter",
+				"subtype": "kSimplechar",
+				"sublen": 100000000
+			},
+			{
+				"name": "lcDrive",
+				"order": 2,
+				"type": "kCharacter",
+				"subtype": "kSimplechar",
+				"sublen": 100000000
+			},
+			{
+				"name": "lcExtension",
+				"order": 5,
+				"type": "kCharacter",
+				"subtype": "kSimplechar",
+				"sublen": 100000000
+			},
+			{
+				"name": "lcFileName",
+				"order": 4,
+				"type": "kCharacter",
+				"subtype": "kSimplechar",
+				"sublen": 100000000
+			},
+			{
+				"name": "lcSisterDirectory",
+				"order": 6,
+				"type": "kCharacter",
+				"subtype": "kSimplechar",
+				"sublen": 100000000
+			},
+			{
+				"name": "lcStartupPath",
+				"order": 7,
+				"type": "kCharacter",
+				"subtype": "kSimplechar",
+				"sublen": 100000000
+			},
+			{
+				"name": "loFileOps",
+				"order": 1,
+				"type": "kObject",
+				"subtype": ".FileOps.FileOps",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "$destruct",
+		"ident": 1,
+		"order": 16385,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+
+		],
+		"empty": true
+	}
+]

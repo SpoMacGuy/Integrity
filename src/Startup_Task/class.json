@@ -1,0 +1,55 @@
+{
+	"classtype": "kTask",
+	"internalversion": 7,
+	"tvardefs": [
+
+	],
+	"cvardefs": [
+
+	],
+	"ivardefs": [
+		{
+			"name": "icErrorText",
+			"order": 2,
+			"type": "kCharacter",
+			"subtype": "kSimplechar",
+			"sublen": 100000000
+		},
+		{
+			"name": "icPrimaryJSONlibrary",
+			"order": 1,
+			"type": "kCharacter",
+			"subtype": "kSimplechar",
+			"sublen": 100000000
+		},
+		{
+			"name": "ilFileList",
+			"order": 3,
+			"type": "kList",
+			"subtype": "",
+			"sublen": 0
+		},
+		{
+			"name": "ilFolderList",
+			"order": 4,
+			"type": "kList",
+			"subtype": "",
+			"sublen": 0
+		}
+	],
+	"properties": {
+		"collectperformancedata": false,
+		"componenticon": 0,
+		"componenttype": "kCompStoreHidden",
+		"createdate": "2018-03-12 19:02:28",
+		"desc": "",
+		"editor": "",
+		"editordata": "",
+		"external": false,
+		"issupercomponent": false,
+		"moddate": "2018-03-17 13:58:32",
+		"showascheckedout": false,
+		"userinfo": "",
+		"version": ""
+	}
+}
