@@ -1,4 +1,4 @@
-#Integrity
+# Integrity
 
 The purpose of Integrity is to make it easy to integrate Open Source projects into your Omnis Studio library.
 
